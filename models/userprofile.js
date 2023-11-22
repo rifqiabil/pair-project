@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Op
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class UserProfile extends Model {
@@ -13,6 +13,30 @@ module.exports = (sequelize, DataTypes) => {
       UserProfile.belongsTo(models.User)
 
     }
+
+    get formatedDate() {
+      return this.birthDate.toISOString().slice(0,10)
+    }
+
+    static async updateOrCreate(firstName, lastName, birthDate, phone, email, address, UserId) {
+      const data = await UserProfile.findOne({
+        where: {
+          UserId: {
+            [Op.eq]: UserId
+          }
+        }
+      })
+      if (!data) {
+        await UserProfile.create({firstName, lastName, birthDate, phone, email, address, UserId})
+      } else {
+        await UserProfile.update({firstName, lastName, birthDate, phone, email, address, UserId}, {
+          where: {
+            id: data.id
+          }
+        })
+      }
+    }
+
   }
   UserProfile.init({
     firstName: DataTypes.STRING,

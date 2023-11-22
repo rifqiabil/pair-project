@@ -42,7 +42,7 @@ class UserController {
           const isValidPassword = bcrypt.compareSync(password, user.password)
           if (isValidPassword){
             req.session.userRole = user.role
-            req.session.userId = user.userId
+            req.session.userId = user.id
 
             res.redirect(`/`)
           } else {

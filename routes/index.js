@@ -13,4 +13,10 @@ router.use(`/logout`, require(`./logoutRoutes`));
 
 router.use(`/cars`, require(`./carRoutes`));
 
+router.use(`/profiles`, require(`./userProfileRoute`))
+
+
+
+
+
 module.exports = router;

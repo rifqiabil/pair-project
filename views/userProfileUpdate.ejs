@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex;justify-content: center; align-content: center; align-items: center; flex-direction:column ;">
+    
+    <%- include('../partials/_navbar') %>
+    
+    <div><h1>Profile</h1></div>
+
+    <div>
+        <form action="http://localhost:3000/profiles" method="post">
+            <input style="visibility: hidden;" type="number" name="UserId" value="<%= data.UserId %>"><br>
+
+            <label for="firstName">First Name</label><span>: </span>
+            <input type="text" name="firstName" value="<%= data.firstName %>"><br><br>
+
+            <label for="lastName">Last Name</label><span>: </span>
+            <input type="text" name="lastName" value="<%= data.lastName %>"><br><br>
+
+            <label for="birthDate">Birth Date</label><span>: </span>
+            <input type="date" name="birthDate" value="<%= data.formatedDate %>"><br><br>
+
+            <label for="phone">Phone Number</label><span>: </span>
+            <input type="text" name="phone" value="<%= data.phone %>"><br><br>
+
+            <label for="email">Email</label><span>: </span>
+            <input type="text" name="email" value="<%= data.email %>"><br><br>
+
+            <label for="address">Address</label><span>: </span>
+            <input type="text" name="address" value="<%= data.address %>"><br><br>
+
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+    
+</body>
+</html>
