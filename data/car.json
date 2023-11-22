@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Mercedes-Benz GLA 200 AMG 1.6",
+        "productionYear": 2018,
+        "milage": 33827,
+        "color": "Putih",
+        "fuelType": "Bensin",
+        "transmission": "Automatic",
+        "price": 522000000,
+        "description": "Mobil mewah tak lekang oleh waktu. Dengan kapasitas 4 penumpang, mobil ini akan membawa anda ke tempat tujuan dengan aman, nyaman dan berkelas",
+        "carImage": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTGNS6tS771ayLuHMkEWLRCzJLdGEcr5WZ6zCHkzFGOsZNsU4jD"        
+    },
+    {
+        "name": "Honda JAZZ RS 1.5",
+        "productionYear": 2014,
+        "milage": 109956,
+        "color": "Putih",
+        "fuelType": "Bensin",
+        "transmission": "Automatic",
+        "price": 171000000,
+        "description": "Si gesit irit, adalah julukan yang pas untuk mobil yang satu ini. Cocok untuk anda muda-mudi trendy yang aktif dan tetap hemat",
+        "carImage": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTZbrz230Y56Wk5nEJvpd2uq3zVu6KgZcmQeK-5as2ok2H0pBp6"        
+    },
+    {
+        "name": "Honda MOBILIO E 1.5",
+        "productionYear": 2014,
+        "milage": 113927,
+        "color": "Merah",
+        "fuelType": "Bensin",
+        "transmission": "Manual",
+        "price": 115000000,
+        "description": "Ingin memulai usaha sebagai Driver Taxol? Mobil ini sangat cocok untuk Anda. Dengan konsumsi bahan bakar 17km/liter, usaha Anda akan lebih efisien",
+        "carImage": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTLUHt9-HhQpdlldkRzMfsW3zM-TxiO5i3FQ1tISpO6zPTAnVs9"        
+    },
+    {
+        "name": "Toyota SIENTA V 1.5",
+        "productionYear": 2016,
+        "milage": 114899,
+        "color": "Hitam",
+        "fuelType": "Bensin",
+        "transmission": "Automatic",
+        "price": 169000000,
+        "description": "Serba bisa. Antar adik ke sekolah? Bisa. Antar Ibu berbelanja? Bisa. Tamasya bersama sekeluarga? Bisa.",
+        "carImage": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTw90VtLlGPqR7wULgUH27uJ7UyDdydzF2pZEBmesrYjgTdcu5I"        
+    },
+    {
+        "name": "Toyota FORTUNER G 2.5",
+        "productionYear": 2014,
+        "milage": 95458,
+        "color": "Hitam",
+        "fuelType": "Diesel",
+        "transmission": "Automatic",
+        "price": 269000000,
+        "description": "Jadikan pengalaman berkendara terasa lebih nyata bersama SUV penjelajah terbaik Toyota.",
+        "carImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnQjrBezKXLQ3NU1xRvXheF4ddvcGCx21YB-836vbOCUwBElix"        
+    }
+]
