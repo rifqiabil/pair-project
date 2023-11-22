@@ -1,7 +1,7 @@
 class HomeController {
-  static async template(req, res) {
+  static async home(req, res) {
     try {
-      res.send(`Hello World`);
+      res.render(`home`);
     } catch (error) {
       console.log(error);
       res.send(error);

@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Car.hasMany(models.Order)
     }
+
+    get title() {
+      return `${this.productionYear} ${this.name}`
+    }
   }
   Car.init({
     name: DataTypes.STRING,

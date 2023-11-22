@@ -41,6 +41,9 @@ class UserController {
         if (user) {
           const isValidPassword = bcrypt.compareSync(password, user.password)
           if (isValidPassword){
+            req.session.userRole = user.role
+            req.session.userId = user.userId
+
             res.redirect(`/`)
           } else {
             const err = `Invalid Password`
@@ -57,9 +60,16 @@ class UserController {
       }
     }
 
-    static async template(req, res) {
+    static async logout(req, res) {
       try {
-        res.send(`Hello World`);
+        req.session.destroy(function(err) {
+          if (err) {
+            res.send(err)
+          }
+          else {
+            res.redirect(`/login`)           
+          }
+        })        
       } catch (error) {
         console.log(error);
         res.send(error);
