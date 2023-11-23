@@ -38,7 +38,7 @@ class UserProfileController {
           }
         })
 
-        res.render(`userProfileUpdate`, {data})
+        res.render(`home`)
 
       } catch (error) {
         console.log(error);

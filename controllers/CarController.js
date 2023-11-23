@@ -1,11 +1,16 @@
-const {Car} = require(`../models/index`)
+const {Car, Order} = require(`../models/index`)
+const {Op} = require(`sequelize`)
 const {numberWithCommas, toRupiah} = require(`../helpers/formatter`)
 
 class CarController {
     static async list(req, res) {
       try {
         const role = req.session.userRole
-        let data = await Car.findAll()
+        let data = await Car.findAll({
+          include: Order,
+        })
+        // console.log(data)
+        // res.json(data)
         res.render(`carList`, {data, numberWithCommas, toRupiah, role})
       } catch (error) {
         console.log(error);
