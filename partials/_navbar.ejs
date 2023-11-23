@@ -1,82 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,600&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <style>
-        body {
-            font-family: "Poppins";
-        }
+      body {
+        font-family: "Poppins";
+      }
 
-        .navbar {
-            background-color: #343a40; /* Dark background color */
-        }
+      .navbar {
+        background-color: #343a40; /* Dark background color */
+      }
 
-        .navbar-brand {
-            font-size: 1.5rem; /* Adjust the font size as needed */
-            font-weight: bold; /* Make the font bold */
-            color: #ffffff; /* Text color */
-        }
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: 600; /* Make the font bold */
+        color: #ffffff; /* Text color */
+      }
 
-        .navbar-nav .nav-item .nav-link {
-            font-size: 1.5rem; /* Adjust the font size as needed */
-            margin-right: 15px; /* Adjust the margin as needed */
-            color: #ffffff; /* Text color */
-        }
+      .navbar-nav .nav-item .nav-link {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        font-weight: 600; /* Make the font bold */
+        color: #ffffff; /* Text color */
+      }
 
-        .navbar-nav .nav-item:last-child .nav-link {
-            margin-right: 0; /* Remove right margin for the last item */
-        }
+      .navbar-nav .nav-item:last-child .nav-link {
+        margin-right: 0;
+      }
+
+      .navbar-toggler-icon {
+        background-color: #fff; /* Set the color of the toggler icon */
+      }
+
+      .navbar-toggler {
+        border-color: #fff; /* Set the border color of the toggler button */
+      }
+
+      .btn-login,
+      .btn-logout {
+        font-size: 1rem; /* Adjust the font size as needed */
+      }
     </style>
-    <title>Document</title>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Mobil Gaya</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <title>MobilGaya</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Mobil<span class="text-danger" style="font-style: italic">Gaya</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/profiles">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/cars">Cars</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/login">
-                        <button type="button" class="btn btn-primary">Login</button>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/logout">
-                        <button type="button" class="btn btn-success">Logout</button>
-                    </a>
-                </li>
-            </ul>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/register">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/profiles">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/cars">Cars</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/login">
+                <button type="button" class="btn btn-primary btn-login">Login</button>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/logout">
+                <button type="button" class="btn btn-success btn-logout">Logout</button>
+              </a>
+            </li>
+          </ul>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
 </html>
