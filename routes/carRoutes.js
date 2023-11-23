@@ -24,8 +24,12 @@ const justAdmin = function (req, res, next) {
 
 router.get(`/`, bothRole, CarController.list);
 
-router.get(`/add`, bothRole, CarController.add);
-router.post(`/add`, bothRole, CarController.addPost);
+router.get(`/add`, justAdmin, CarController.add);
+router.post(`/add`, justAdmin, CarController.addPost);
+
+router.get(`/edit/:id`, justAdmin, CarController.edit);
+router.post(`/edit/:id`, justAdmin, CarController.editPost);
+
 
 
 module.exports = router;

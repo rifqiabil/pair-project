@@ -69,6 +69,52 @@ class CarController {
     }
   }
 
+  static async edit(req, res) {
+    try {
+      const {id} = req.params
+
+      let data = await Car.findByPk(id)
+
+      res.render(`carEdit`, {data});
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
+  static async editPost(req, res) {
+    try {
+      const {id} = req.params
+      const {
+        name,
+        productionYear,
+        stock,
+        color,
+        fuelType,
+        transmission,
+        price,
+        description,
+        carImage,
+      } = req.body;
+
+      await Car.update({
+        name,
+        productionYear,
+        stock,
+        color,
+        fuelType,
+        transmission,
+        price,
+        description,
+        carImage,
+      }, {where: {id}})
+      res.redirect(`/cars`);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
   static async template(req, res) {
     try {
       res.send(`Hello World`);

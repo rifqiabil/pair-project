@@ -38,8 +38,8 @@
                     <td>
                         <a href=""><button>Buy</button></a>
                         <% if (role === "admin") { %>
-                         <a href=""><button>Edit</button></a>
-                         <a href=""><button>Delete</button></a>
+                         <a href="http://localhost:3000/cars/edit/<%= el.id %>"><button>Edit</button></a>
+                         <a href="http://localhost:3000/cars/delete/<%= el.id %>"><button>Delete</button></a>
                         <% } %>
                     </td>
                 </tbody>
