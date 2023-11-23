@@ -39,7 +39,7 @@
                     <% if (role === 'user') { %>
                         <td>
                             <a href="http://localhost:3000/orders/paid/<%= el.uniqueKey %>"><button>Paid</button></a>
-                            <a href=""><button>Get Invoice</button></a>
+                            <a href="http://localhost:3000/orders/invoice/<%= el.uniqueKey %>"><button>Get Invoice</button></a>
                          </td>
                     <% } %>
                     
