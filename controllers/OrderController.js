@@ -1,7 +1,7 @@
 const { Order, User, Car } = require(`../models/index`);
 const { Op } = require(`sequelize`);
 const { toRupiah } = require(`../helpers/formatter`);
-const { createInvoice } = require("easyinvoice");
+const { createInvoice } = require("ez-invoice");
 const { createWriteStream } = require("fs");
 
 class OrderController {
@@ -9,7 +9,7 @@ class OrderController {
     try {
       const role = req.session.userRole;
       const UserId = req.session.userId;
-      const {invoice} = req.query
+      const { invoice } = req.query;
 
       let data;
 
