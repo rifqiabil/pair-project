@@ -17,7 +17,7 @@
                 <th>Photo</th>
                 <th>Title</th>
                 <th>Transmission</th>
-                <th>Milage</th>
+                <th>Stock</th>
                 <th>Price</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -28,7 +28,7 @@
                     <td><img style="width: 80px; height: 50px;" src="<%= el.carImage %>" alt="Car Picture"></td>
                     <td><%= el.title %></td>
                     <td><%= el.transmission %></td>
-                    <td><%= numberWithCommas(el.milage) %> km</td>
+                    <td><%= numberWithCommas(el.stock) %> units</td>
                     <td><%= toRupiah(el.price) %></td>
                     <td><%= el.description %></td>
                     <td>

@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Car.init({
     name: DataTypes.STRING,
     productionYear: DataTypes.STRING,
-    milage: DataTypes.INTEGER,
+    stock: DataTypes.INTEGER,
     color: DataTypes.STRING,
     fuelType: DataTypes.STRING,
     transmission: DataTypes.STRING,
