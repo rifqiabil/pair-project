@@ -1,29 +1,82 @@
-const {Car, Order} = require(`../models/index`)
-const {Op} = require(`sequelize`)
-const {numberWithCommas, toRupiah} = require(`../helpers/formatter`)
+const { Car, Order, sequelize } = require(`../models/index`);
+const { Op } = require(`sequelize`);
+const { numberWithCommas, toRupiah } = require(`../helpers/formatter`);
 
 class CarController {
-    static async list(req, res) {
-      try {
-        const role = req.session.userRole
-        let data = await Car.findAll({
-          order: [["productionYear", "ASC"], ["stock", "DESC"]],
-        })
-        res.render(`carList`, {data, numberWithCommas, toRupiah, role})
-      } catch (error) {
-        console.log(error);
-        res.send(error);
-      }
-    }
+  static async list(req, res) {
+    try {
+      const role = req.session.userRole;
+      let data = await Car.findAll({
+        // attributes: {
+        //   include: [
+        //     [sequelize.fn(`COUNT`), sequelize.col("Orders.id"), "totalOrder"]
+        //   ]
+        // },
+        include: Order,
+        group: Car.id,
+        order: [
+          ["productionYear", "ASC"],
+          ["stock", "DESC"],
+        ],
+      });
 
-    static async template(req, res) {
-      try {
-        res.send(`Hello World`);
-      } catch (error) {
-        console.log(error);
-        res.send(error);
-      }
+      // res.json(data)
+      res.render(`carList`, { data, numberWithCommas, toRupiah, role });
+    } catch (error) {
+      console.log(error);
+      res.send(error);
     }
   }
-  
-  module.exports = CarController;
+
+  static async add(req, res) {
+    try {
+      res.render(`carAdd`);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
+  static async addPost(req, res) {
+    try {
+      const {
+        name,
+        productionYear,
+        stock,
+        color,
+        fuelType,
+        transmission,
+        price,
+        description,
+        carImage,
+      } = req.body;
+      await Car.create({
+        name,
+        productionYear,
+        stock,
+        color,
+        fuelType,
+        transmission,
+        price,
+        description,
+        carImage,
+      });
+
+      res.redirect(`/cars`);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
+  static async template(req, res) {
+    try {
+      res.send(`Hello World`);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+}
+
+module.exports = CarController;

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex;justify-content: center; align-content: center; align-items: center; flex-direction:column ;">
+    
+    <%- include('../partials/_navbar') %>
+    
+    <div><h1>Add Car</h1></div>
+
+    <div>
+        <form action="http://localhost:3000/cars/add" method="post">
+            <label for="name">Name</label><br>
+            <input type="text" name="name"><br><br>
+
+            <label for="productionYear">Production Year</label><br>
+            <input type="number" name="productionYear"><br><br>
+
+            <label for="stock">Stock</label><br>
+            <input type="number" name="stock"><br><br>
+
+            <label for="color">Color</label><br>
+            <input type="text" name="color"><br><br>
+
+            <label for="fuelType">Fuel Type</label><br>
+            <select name="fuelType">
+                <option value="" selected disabled>--Select Fuel Type--</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Bensin">Bensin</option>
+            </select><br><br>
+
+            <label for="transmission">Transmission</label><br>
+            <select name="transmission">
+                <option value="" selected disabled>--Select Fuel Type--</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select><br><br>
+
+            <label for="price">Price</label><br>
+            <input type="number" name="price"><br><br>
+
+            <label for="description">Description</label><br>
+            <textarea name="description" cols="30" rows="5"></textarea><br><br>
+
+            <label for="carImage">Car Image URL</label><br>
+            <input type="text" name="carImage"><br><br>
+
+            <button type="submit">Add Car</button>
+
+        </form>
+    </div>
+    
+</body>
+</html>

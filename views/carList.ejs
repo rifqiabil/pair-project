@@ -11,6 +11,10 @@
     
     <div><h1>Car List</h1></div>
 
+    <% if (role === "admin") { %>
+        <a href="http://localhost:3000/cars/add"><button>Add New Car</button></a><br>
+       <% } %>
+
     <div>
         <table border="2" style="text-align: center;">
             <thead>
