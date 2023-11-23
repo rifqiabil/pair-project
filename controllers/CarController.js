@@ -7,10 +7,8 @@ class CarController {
       try {
         const role = req.session.userRole
         let data = await Car.findAll({
-          include: Order,
+          order: [["productionYear", "ASC"], ["stock", "DESC"]],
         })
-        // console.log(data)
-        // res.json(data)
         res.render(`carList`, {data, numberWithCommas, toRupiah, role})
       } catch (error) {
         console.log(error);
