@@ -9,6 +9,7 @@ class OrderController {
     try {
       const role = req.session.userRole;
       const UserId = req.session.userId;
+      const {invoice} = req.query
 
       let data;
 
@@ -32,7 +33,7 @@ class OrderController {
       }
 
       // res.json(data)
-      res.render(`orderList`, { data, toRupiah, role });
+      res.render(`orderList`, { data, toRupiah, role, invoice });
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -82,32 +83,31 @@ class OrderController {
     try {
       const { uniqueKey } = req.params;
 
-      const [data] = await Order.findAll({
+      const data = await Order.findOne({
         where: { uniqueKey },
         include: Car,
       });
 
       const options = {
         storeName: "MOBIL GAYA",
+        tax: 11,
         currency: "IDR",
-        paymentMode: `${data.paymentMethod}`,
-        location: `${data.shippingAddress}`,
-        invoiceID: `${data.uniqueKey}`,
+        paymentMode: data.paymentMethod,
+        location: data.shippingAddress,
+        invoiceID: data.uniqueKey,
       };
 
       let items = [
         {
-          name: `${data.Car.name}`,
-          afterTax: `${data.totalAmount}`,
+          name: data.Car.name,
+          beforeTax: data.Car.price,
         },
       ];
 
       const invoice = createInvoice(options, items);
+      invoice.jpeg.pipe(createWriteStream("./public/invoice.jpeg"));
 
-      const test = invoice.png.pipe(createWriteStream("./invoice.png"));
-
-      // res.json(data.Car.price)
-      res.render(`invoice`, { data });
+      res.redirect(`/orders?invoice=ada`);
     } catch (error) {
       console.log(error);
       res.send(error);
