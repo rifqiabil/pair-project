@@ -5,6 +5,9 @@ class UserProfileController {
     static async display(req, res) {
       try {
         const id = req.session.userId
+        const {error} = req.query
+
+
         const data = await UserProfile.findOne({
           where: {
             UserId: {
@@ -17,9 +20,9 @@ class UserProfileController {
           const userData = await User.findByPk(id, {
             attributes: ["email", "id"]
           })
-          res.render(`userProfileCreate`, {userData})
+          res.render(`userProfileCreate`, {userData, error})
         } else {
-          res.render(`userProfileUpdate`, {data})
+          res.render(`userProfileUpdate`, {data, error})
         }
       } catch (error) {
         console.log(error);
@@ -41,8 +44,12 @@ class UserProfileController {
         res.render(`home`)
 
       } catch (error) {
-        console.log(error);
-        res.send(error);
+        if (error.name ==="SequelizeValidationError") {
+          let err = error.errors.map(el => el.message)
+          res.redirect(`/profiles?error=${err}`)
+        } else {
+          res.send(error)
+        }
       }
     }
 

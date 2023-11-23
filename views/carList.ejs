@@ -23,13 +23,37 @@
     
     <div><h1>Car List</h1></div>
 
-    <div>
+    <% if (deleted) { %>
+     <div style="color: red;"><h3><%= deleted %> has been removed</h3></div>
+    <% } %>
+
+    <% if (bought) { %>
+     <div style="color: blue;"><h3><%= bought %> has been bought</h3></div>
+    <% } %>
+
+    <% if (error) { %>
+        <div style="color: red;"><h3><%= error %></h3></div>
+       <% } %>
+
+    <% if (role === "admin") { %>
+        <div><a href="http://localhost:3000/cars/add"><button>Add New Car</button></a></div><br>
+       <% } %>
+
+
+       <div>
+        <form action="">
+            <input type="text" name="nameSearch" placeholder="Search by name">
+            <button type="submit">Search</button>
+        </form>
+       </div>
+    <div><br>
+        
         <table border="2" style="text-align: center;">
             <thead>
                 <th>Photo</th>
                 <th>Title</th>
                 <th>Transmission</th>
-                <th>Milage</th>
+                <th>Stock</th>
                 <th>Price</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -40,14 +64,16 @@
                     <td><img style="width: 80px; height: 50px;" src="<%= el.carImage %>" alt="Car Picture"></td>
                     <td><%= el.title %></td>
                     <td><%= el.transmission %></td>
-                    <td><%= numberWithCommas(el.stock) %> km</td>
+                    <td><%= numberWithCommas(el.stock) %> units</td>
                     <td><%= toRupiah(el.price) %></td>
                     <td><%= el.description %></td>
-                    <td>
-                        <a href=""><button>Buy</button></a>
+                    <td style="text-align: end;">
+                        <% if (role === "user") { %>
+                            <a href="http://localhost:3000/cars/buy/<%= el.id %>"><button>Buy</button></a>                         
+                        <% } %>
                         <% if (role === "admin") { %>
-                         <a href=""><button>Edit</button></a>
-                         <a href=""><button>Delete</button></a>
+                         <a href="http://localhost:3000/cars/edit/<%= el.id %>"><button>Edit</button></a>
+                         <a href="http://localhost:3000/cars/delete/<%= el.id %>"><button>Delete</button></a>
                         <% } %>
                     </td>
                 </tbody>

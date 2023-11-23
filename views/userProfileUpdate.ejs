@@ -22,9 +22,10 @@
 <body>
     <%- include('../partials/_navbar') %>
 
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Profile</h1>
-
+    <% if (error) { %>
+        <div style="color: red;"><p><%= error.split(",").join(", ") %></p></div>
+       <% } %>
+    <div>
         <form action="http://localhost:3000/profiles" method="post">
             <input type="hidden" name="UserId" value="<%= data.UserId %>">
 

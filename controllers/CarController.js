@@ -8,20 +8,32 @@ class CarController {
       const role = req.session.userRole;
       const { deleted } = req.query;
       const { bought } = req.query;
+      const {nameSearch} = req.query
+      const {error} = req.query
 
-      let data = await Car.findAll({
-        // attributes: {
-        //   include: [
-        //     [sequelize.fn(`COUNT`), sequelize.col("Orders.id"), "totalOrder"]
-        //   ]
-        // },
-        include: Order,
-        group: Car.id,
-        order: [
-          ["productionYear", "ASC"],
-          ["stock", "DESC"],
-        ],
-      });
+      let data 
+
+      if(nameSearch){
+        data = await Car.findAll({
+          where: {
+            name: {
+              [Op.iLike]: `%${nameSearch}%`
+            }
+          },
+          order: [
+            ["productionYear", "ASC"],
+            ["stock", "DESC"],
+          ],
+        });
+      } else {
+        data = await Car.findAll({          
+          order: [
+            ["productionYear", "ASC"],
+            ["stock", "DESC"],
+          ],
+        });
+      }
+     
       // res.json(data)
       res.render(`carList`, {
         data,
@@ -30,16 +42,18 @@ class CarController {
         role,
         deleted,
         bought,
+        error
       });
     } catch (error) {
-      console.log(error);
-      res.send(error);
+      res.send(error)
     }
   }
 
   static async add(req, res) {
     try {
-      res.render(`carAdd`);
+      let {errors} = req.query
+      
+      res.render(`carAdd`, {errors});
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -73,8 +87,12 @@ class CarController {
 
       res.redirect(`/cars`);
     } catch (error) {
-      console.log(error);
-      res.send(error);
+      if (error.name === "SequelizeValidationError") {
+        let err = error.errors.map(el => el.message)
+        res.redirect(`/cars/add?errors=${err}`);
+      } else {
+        res.send(error)
+      }
     }
   }
 
@@ -148,17 +166,23 @@ class CarController {
       const { id } = req.params;
       const UserId = req.session.userId;
 
+      const validUser = await UserProfile.findByPk(UserId)
+
+      if (!validUser) {
+        throw new Error(`User Profile is required to Purchase Car`) 
+      }
+      
       const carData = await Car.findByPk(id);
 
       const userData = await User.findByPk(UserId, {
         include: UserProfile,
       });
 
-
-      res.render(`carBuy`, { carData, userData });
+      res.json(error)
+      // res.render(`carBuy`, { carData, userData });
     } catch (error) {
       console.log(error);
-      res.send(error);
+      res.redirect(`/cars?error=${error.message}`);
     }
   }
 

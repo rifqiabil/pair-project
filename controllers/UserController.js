@@ -4,7 +4,8 @@ const bcrypt = require(`bcryptjs`);
 class UserController {
     static async register(req, res) {
       try {
-        res.render(`userRegister`);
+        const error = "This is an error message";
+        res.render("userRegister", { error: error.message });
       } catch (error) {
         console.log(error);
         res.send(error);

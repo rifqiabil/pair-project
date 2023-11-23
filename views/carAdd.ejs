@@ -11,6 +11,13 @@
     
     <div><h1>Add Car</h1></div>
 
+
+    <% if (errors) { %>
+     <div>
+       <p style="color: red;"> <%= errors.split(",").join(", ") %></p>
+    </div>
+    <% } %>
+
     <div>
         <form action="http://localhost:3000/cars/add" method="post">
             <label for="name">Name</label><br>
