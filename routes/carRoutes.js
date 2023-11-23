@@ -30,6 +30,8 @@ router.post(`/add`, justAdmin, CarController.addPost);
 router.get(`/edit/:id`, justAdmin, CarController.edit);
 router.post(`/edit/:id`, justAdmin, CarController.editPost);
 
+router.get(`/delete/:id`, justAdmin, CarController.del);
+
 
 
 module.exports = router;

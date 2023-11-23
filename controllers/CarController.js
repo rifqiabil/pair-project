@@ -6,6 +6,8 @@ class CarController {
   static async list(req, res) {
     try {
       const role = req.session.userRole;
+      const {deleted} = req.query
+
       let data = await Car.findAll({
         // attributes: {
         //   include: [
@@ -19,9 +21,8 @@ class CarController {
           ["stock", "DESC"],
         ],
       });
-
       // res.json(data)
-      res.render(`carList`, { data, numberWithCommas, toRupiah, role });
+      res.render(`carList`, { data, numberWithCommas, toRupiah, role, deleted });
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -109,6 +110,23 @@ class CarController {
         carImage,
       }, {where: {id}})
       res.redirect(`/cars`);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
+  static async del(req, res) {
+    try {
+      const {id} = req.params
+      const data = await Car.findByPk(id)
+
+      await Car.destroy({
+        where: {id}
+      })
+
+      res.redirect(`/cars?deleted=${data.title}`)
+
     } catch (error) {
       console.log(error);
       res.send(error);
