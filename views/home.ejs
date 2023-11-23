@@ -4,40 +4,184 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+      .carousel-inner {
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Adjust the shadow values as needed */
+        border-radius: 10px;
+      }
+
+      .carousel-inner img {
+        object-fit: fill;
+        width: 100%;
+        height: 410px; /* Adjust the height as needed */
+        border-radius: 10px;
+      }
+
+      .carousel-item {
+        transition: transform 2s ease;
+        opacity: 0.5s ease-out;
+      }
+
+      .card {
+        margin-bottom: 20px; /* Add margin for separation between cards */
+      }
+
+      .card-img-top {
+        object-fit: cover; /* Use 'cover' for better image aspect ratio */
+        width: 100%;
+        height: 200px; /* Adjust the height as needed */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .card .rounded-circle {
+        width: 250px; /* Adjust the size of the circular image */
+        height: 250px; /* Adjust the size of the circular image */
+        border-radius: 50%; /* Make the image circular */
+        object-fit: cover; /* Ensure the image covers the circle without stretching */
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+
+      .card-body {
+        margin-top: 80px; /* Adjust the margin to accommodate the circular image */
+        background-color: #f0f0f0; /* Change to the desired gray color */
+      }
+
+      /* Footer Styles */
+      .footer {
+        background-color: #f0f0f0; /* Background color for the footer */
+        padding: 40px 0; /* Adjust padding as needed */
+        margin-top: 40px; /* Adjust margin as needed */
+      }
+
+      .footer a {
+        color: #333; /* Link color */
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        color: #dc3545; /* Link color on hover */
+      }
+
+      .footer h3 {
+        color: #333; /* Heading color */
+      }
+
+      .footer ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer .copy {
+        color: #555; /* Text color */
+      }
+
+      .footer .sosmed a {
+        font-size: 24px;
+        margin-right: 10px;
+        color: #333; /* Social media icon color */
+      }
+
+      .footer .sosmed a:hover {
+        color: #dc3545; /* Social media icon color on hover */
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
     <%- include('../partials/_navbar') %>
 
     <div class="container mt-5">
-      <h1>Hot Sales</h1>
+      <h1 style="font-weight: bolder">Hot Sales</h1>
 
       <!-- Bootstrap Carousel -->
-      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <!-- Placeholder Images (Replace with your actual image URLs) -->
           <div class="carousel-item active">
-            <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 1">
+            <img src="https://toyotadepok-margonda.com/wp-content/uploads/2023/07/Banner-FB-Tukar-Tambah.jpg" class="d-block" alt="Slide 1" />
           </div>
           <div class="carousel-item">
-            <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 2">
+            <img src="https://www.harga-hondamakassar.id/wp-content/uploads/2022/10/Banner-Promo-Mobil-Honda-Terbaru.jpg" class="d-block" alt="Slide 2" />
           </div>
           <div class="carousel-item">
-            <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 3">
+            <img src="https://autonetmagz.com/wp-content/uploads/2022/11/suzuki-pesta-akhir-tahun-november-2022-banner-promo.jpg" class="d-block" alt="Slide 3" />
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
       <!-- End Bootstrap Carousel -->
-
     </div>
+
+    <div>
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <h1 class="text-center">Apa Kata Mereka</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <img src="https://blog.amartha.com/wp-content/uploads/2022/03/ilustrasi-orang-tajir.jpg" class="rounded-circle" alt="Profile Image" />
+            <div class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: bolder">Adam</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea voluptate libero repellendus incidunt fuga saepe odit quos veniam cum culpa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <img src="https://www.bfi.co.id/Blog/Blog%20New/16%20Cara%20Menjadi%20Orang%20Sukses%20Dari%20Nol%2C%20Siapa%20Saja%20Bisa%20Mencobanya%21/cara-menjadi-orang-sukses.jpg" class="rounded-circle" alt="Profile Image" />
+            <div class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: bolder">Hawa</h5>
+              <p class="card-text">Lorem ipsum, dolor sit amet adipisicing elit. Inventore sint dolorum voluptatem, eum praesentium magni expedita quod reprehenderit?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row row-content">
+          <div class="col-lg-3 col-md-4 column">
+            <a href="#" class="email" style="font-size: 50px;">Mobil<span style="color: red">Gaya</span></a>
+          </div>
+          <div class="col-lg-2 col-md-3 offset-md-2 mt-3 mt-sm-0 column justify-content-center">
+            <h3 class="text-end">Layanan</h3>
+            <ul style="color: black" class="text-end">
+              <li>Beli Mobil</li>
+              <li>Jual Mobil</li>
+              <li>Tentang Kami</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 col-md-3 mt-3 mt-sm-0 column text-end">
+            <h3>Bantuan</h3>
+            <ul class="centered-list" style="color: black">
+              <li>FAQ</li>
+              <li>Hubungi Kami</li>
+              <li>Lokasi Kami</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-12">
+            <p class="copy">
+              &copy; Copyright 2023 Hacktiv8 | Built by
+              <a href="#">Group 5</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
