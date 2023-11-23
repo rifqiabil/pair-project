@@ -2,15 +2,14 @@ const { User } = require(`../models/index`);
 const bcrypt = require(`bcryptjs`);
 
 class UserController {
-  static async register(req, res) {
-    try {
-      const error = "This is an error message";
-      res.render("userRegister", { error: error.message });
-    } catch (error) {
-      console.log(error);
-      res.send(error);
+    static async register(req, res) {
+      try {
+        res.render(`userRegister`);
+      } catch (error) {
+        console.log(error);
+        res.send(error);
+      }
     }
-  }
 
   static async registerPost(req, res) {
     try {

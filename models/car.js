@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Car.hasMany(models.Order)
+      Car.belongsToMany(models.User, {through: "Order"})
+    }
+
+    get afterTax() {
+      return Math.round(this.price * 1.11)
     }
 
     get title() {
@@ -20,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   Car.init({
     name: DataTypes.STRING,
     productionYear: DataTypes.STRING,
-    milage: DataTypes.INTEGER,
+    stock: DataTypes.INTEGER,
     color: DataTypes.STRING,
     fuelType: DataTypes.STRING,
     transmission: DataTypes.STRING,
