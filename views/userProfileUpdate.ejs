@@ -21,7 +21,7 @@
   </head>
   <body>
     <%- include('../partials/_navbar') %> <% if (error) { %>
-    <div style="color: red"><p><%= error.split(",").join(", ") %></p></div>
+    <div style="color: red; text-align: center; margin-top: 5px; margin-bottom: 3px;"><p><%= error.split(",").join(", ") %></p></div>
     <% } %>
     <div>
       <form action="http://localhost:3000/profiles" method="post">
