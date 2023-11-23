@@ -15,6 +15,10 @@
      <div style="color: red;"><h3><%= deleted %> has been removed</h3></div>
     <% } %>
 
+    <% if (bought) { %>
+     <div style="color: blue;"><h3><%= bought %> has been bought</h3></div>
+    <% } %>
+
     <% if (role === "admin") { %>
         <div><a href="http://localhost:3000/cars/add"><button>Add New Car</button></a></div><br>
        <% } %>
@@ -40,7 +44,7 @@
                     <td><%= toRupiah(el.price) %></td>
                     <td><%= el.description %></td>
                     <td>
-                        <a href=""><button>Buy</button></a>
+                        <a href="http://localhost:3000/cars/buy/<%= el.id %>"><button>Buy</button></a>
                         <% if (role === "admin") { %>
                          <a href="http://localhost:3000/cars/edit/<%= el.id %>"><button>Edit</button></a>
                          <a href="http://localhost:3000/cars/delete/<%= el.id %>"><button>Delete</button></a>

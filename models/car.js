@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Car.hasMany(models.Order)
+      Car.belongsToMany(models.User, {through: "Order"})
+    }
+
+    get afterTax() {
+      return Math.round(this.price * 1.11)
     }
 
     get title() {

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex;justify-content: center; align-content: center; align-items: center; flex-direction:column ;">
+    
+    <%- include('../partials/_navbar') %>
+    
+    <div><h1>Orders Bucket</h1></div>
+
+    <div>
+        <table border="2" style="text-align: center;">
+            <thead>
+                <th>Username</th>
+                <th>Total Amount</th>
+                <th>Shipping Address</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </thead>
+            <% data.forEach(el => { %>
+                <tbody>
+                    <td><%= el.User.username %></td>
+                    <td><%= toRupiah(el.totalAmount) %></td>
+                    <td><%= el.shippingAddress %></td>
+                    <td><%= el.paymentMethod %></td>
+                    <td><%= el.status %></td>
+                    <% if (role === 'admin') { %>
+                     <td style="text-align: end;">
+                        <% if (el.isPaid) { %>
+                            <a href="http://localhost:3000/orders/confirmed/<%= el.uniqueKey %>"><button>Confirmed</button></a>                         
+                        <% } %>
+                        <a href="http://localhost:3000/orders/delete/<%= el.uniqueKey %>"><button>Deleted</button></a>
+                     </td>
+                    <% } %>
+                    <% if (role === 'user') { %>
+                        <td>
+                            <a href="http://localhost:3000/orders/paid/<%= el.uniqueKey %>"><button>Paid</button></a>
+                            <a href=""><button>Get Invoice</button></a>
+                         </td>
+                    <% } %>
+                    
+                </tbody>             
+            <% }) %>
+        </table>
+    </div>
+    
+</body>
+</html>

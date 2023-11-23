@@ -1,5 +1,5 @@
-const CarController = require("../controllers/CarController");
 const router = require(`express`).Router();
+const OrderController = require(`../controllers/OrderController`)
 
 const bothRole = function (req, res, next) {
   console.log(req.session);
@@ -21,17 +21,12 @@ const justAdmin = function (req, res, next) {
   }
 };
 
-router.get(`/`, bothRole, CarController.list);
-router.get(`/buy/:id`, bothRole, CarController.buy);
-router.post(`/buy/:id`, bothRole, CarController.buyPost);
+router.get(`/`, bothRole, OrderController.list);
 
-router.get(`/add`, justAdmin, CarController.add);
-router.post(`/add`, justAdmin, CarController.addPost);
+router.get(`/paid/:uniqueKey`, bothRole, OrderController.paid);
 
-router.get(`/edit/:id`, justAdmin, CarController.edit);
-router.post(`/edit/:id`, justAdmin, CarController.editPost);
+router.get(`/confirmed/:uniqueKey`, justAdmin, OrderController.confirmed);
 
-router.get(`/delete/:id`, justAdmin, CarController.del);
-
+router.get(`/delete/:uniqueKey`, justAdmin, OrderController.del);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const { Car, Order, sequelize } = require(`../models/index`);
+const { Car, Order, User, UserProfile, sequelize } = require(`../models/index`);
 const { Op } = require(`sequelize`);
 const { numberWithCommas, toRupiah } = require(`../helpers/formatter`);
 
@@ -6,7 +6,8 @@ class CarController {
   static async list(req, res) {
     try {
       const role = req.session.userRole;
-      const {deleted} = req.query
+      const { deleted } = req.query;
+      const { bought } = req.query;
 
       let data = await Car.findAll({
         // attributes: {
@@ -22,7 +23,14 @@ class CarController {
         ],
       });
       // res.json(data)
-      res.render(`carList`, { data, numberWithCommas, toRupiah, role, deleted });
+      res.render(`carList`, {
+        data,
+        numberWithCommas,
+        toRupiah,
+        role,
+        deleted,
+        bought,
+      });
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -72,11 +80,11 @@ class CarController {
 
   static async edit(req, res) {
     try {
-      const {id} = req.params
+      const { id } = req.params;
 
-      let data = await Car.findByPk(id)
+      let data = await Car.findByPk(id);
 
-      res.render(`carEdit`, {data});
+      res.render(`carEdit`, { data });
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -85,7 +93,7 @@ class CarController {
 
   static async editPost(req, res) {
     try {
-      const {id} = req.params
+      const { id } = req.params;
       const {
         name,
         productionYear,
@@ -98,17 +106,20 @@ class CarController {
         carImage,
       } = req.body;
 
-      await Car.update({
-        name,
-        productionYear,
-        stock,
-        color,
-        fuelType,
-        transmission,
-        price,
-        description,
-        carImage,
-      }, {where: {id}})
+      await Car.update(
+        {
+          name,
+          productionYear,
+          stock,
+          color,
+          fuelType,
+          transmission,
+          price,
+          description,
+          carImage,
+        },
+        { where: { id } }
+      );
       res.redirect(`/cars`);
     } catch (error) {
       console.log(error);
@@ -118,15 +129,51 @@ class CarController {
 
   static async del(req, res) {
     try {
-      const {id} = req.params
-      const data = await Car.findByPk(id)
+      const { id } = req.params;
+      const data = await Car.findByPk(id);
 
       await Car.destroy({
-        where: {id}
-      })
+        where: { id },
+      });
 
-      res.redirect(`/cars?deleted=${data.title}`)
+      res.redirect(`/cars?deleted=${data.title}`);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
 
+  static async buy(req, res) {
+    try {
+      const { id } = req.params;
+      const UserId = req.session.userId;
+
+      const carData = await Car.findByPk(id);
+
+      const userData = await User.findByPk(UserId, {
+        include: UserProfile,
+      });
+
+
+      res.render(`carBuy`, { carData, userData });
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  }
+
+  static async buyPost(req, res) {
+    try {
+      const { totalAmount, shippingAddress, paymentMethod, UserId, CarId } =
+        req.body;
+
+      await Order.create({ totalAmount, shippingAddress, paymentMethod, UserId, CarId })
+
+      await Car.decrement("stock", {
+        where: { id : CarId },
+      });
+
+      res.redirect(`/orders`)
     } catch (error) {
       console.log(error);
       res.send(error);

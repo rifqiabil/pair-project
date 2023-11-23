@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasOne(models.UserProfile)
       User.hasMany(models.Order)
+      User.belongsToMany(models.Car, {through: "Order"})
     }
   }
   User.init({
