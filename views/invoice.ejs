@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invoice</title>
     <script src="https://cdn.jsdelivr.net/npm/ez-invoice/index.min.js"></script>
+  </head>
+  <body>
+    <%- include('../partials/_navbar') %>
+
+    <div class="mt-5"> <h1 style="text-align: center;">Invoice Page</h1></div>
+
     <script>
       const options = {
         storeName: "MOBIL GAYA",
@@ -18,7 +24,9 @@
       let items = [
         {
           name: `${data.Car.name}`,
-          beforeTax: 3,
+          quantity: 1,
+          beforeTax: parseFloat(data.Car.price),
+          price: parseFloat(data.Car.price),
         },
       ];
 
@@ -26,10 +34,5 @@
 
       document.body.appendChild(invoiceCanvas);
     </script>
-  </head>
-  <body>
-    <%- include('../partials/_navbar') %>
-
-    <div><h1>Invoice Page</h1></div>
   </body>
 </html>

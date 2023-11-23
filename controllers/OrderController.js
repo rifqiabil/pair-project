@@ -1,7 +1,7 @@
 const { Order, User, Car } = require(`../models/index`);
 const { Op } = require(`sequelize`);
 const { toRupiah } = require(`../helpers/formatter`);
-const { createInvoice } = require("ez-invoice");
+const { createInvoice } = require("easyinvoice");
 const { createWriteStream } = require("fs");
 
 class OrderController {
@@ -43,10 +43,7 @@ class OrderController {
     try {
       const { uniqueKey } = req.params;
 
-      const update = await Order.update(
-        { isPaid: true },
-        { where: { uniqueKey } }
-      );
+      const update = await Order.update({ isPaid: true }, { where: { uniqueKey } });
 
       res.redirect(`/orders`);
     } catch (error) {
@@ -59,10 +56,7 @@ class OrderController {
     try {
       const { uniqueKey } = req.params;
 
-      const update = await Order.update(
-        { isConfirmed: true },
-        { where: { uniqueKey } }
-      );
+      const update = await Order.update({ isConfirmed: true }, { where: { uniqueKey } });
 
       res.redirect(`/orders`);
     } catch (error) {
@@ -104,17 +98,16 @@ class OrderController {
       let items = [
         {
           name: `${data.Car.name}`,
-          afterTax: `${data.totalAmount}`
-        }
+          afterTax: `${data.totalAmount}`,
+        },
       ];
 
-      const invoice = createInvoice(options, items)
+      const invoice = createInvoice(options, items);
 
-      const test = invoice.png.pipe(createWriteStream("./invoice.png"))
-
+      const test = invoice.png.pipe(createWriteStream("./invoice.png"));
 
       // res.json(data.Car.price)
-      res.render(`invoice`, {data});
+      res.render(`invoice`, { data });
     } catch (error) {
       console.log(error);
       res.send(error);
