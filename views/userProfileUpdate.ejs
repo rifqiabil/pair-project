@@ -11,6 +11,10 @@
     
     <div><h1>Profile</h1></div>
 
+    <% if (error) { %>
+        <div style="color: red;"><p><%= error.split(",").join(", ") %></p></div>
+       <% } %>
+
     <div>
         <form action="http://localhost:3000/profiles" method="post">
             <input style="visibility: hidden;" type="number" name="UserId" value="<%= data.UserId %>"><br>
