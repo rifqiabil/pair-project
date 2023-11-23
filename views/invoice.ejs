@@ -4,34 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/ez-invoice/index.min.js"></script>
-<script>
-    const options = {
-        storeName: "MOBIL GAYA",
-        tax: 10,
-        currency: "$",
-        paymentMode: `${data.paymentMethod}`,
-        location: `${data.shippingAddress}`,
-        invoiceID: `${data.uniqueKey}`,
-}
-
-let items = [
-{
-          name: `${data.Car.name}`,
-          beforeTax: "3"
-        }
-]
-
-const invoiceCanvas = createInvoice(options, items)
-
-document.body.appendChild(invoiceCanvas)
-</script>
 </head>
 <body style="display: flex;justify-content: center; align-content: center; align-items: center; flex-direction:column ;">
     
     <%- include('../partials/_navbar') %>
     
     <div><h1>Invoice Page</h1></div>
+
+    <div><img src="invoice.jpeg" alt="ini Gambar"></div>
     
 </body>
 </html>

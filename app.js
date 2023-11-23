@@ -20,6 +20,8 @@ app.use(
   })
 );
 
+app.use(express.static("public"));
+
 app.use(`/`, routes);
 
 app.listen(port, () => {

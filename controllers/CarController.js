@@ -166,7 +166,10 @@ class CarController {
       const { id } = req.params;
       const UserId = req.session.userId;
 
-      const validUser = await UserProfile.findByPk(UserId)
+      const validUser = await UserProfile.findOne({
+        where: {UserId}
+      })
+
 
       if (!validUser) {
         throw new Error(`User Profile is required to Purchase Car`) 
@@ -178,10 +181,8 @@ class CarController {
         include: UserProfile,
       });
 
-
-
-      res.json(error)
-      // res.render(`carBuy`, { carData, userData });
+      // res.json(validUser)
+      res.render(`carBuy`, { carData, userData });
     } catch (error) {
       console.log(error);
       res.redirect(`/cars?error=${error.message}`);
