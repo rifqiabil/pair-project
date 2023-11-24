@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: `Production Year is required`
         },
         validYear (value) {
-          let currentYear = new Date().toISOString().slice(0,4)
+          let currentYear = new Date().toISOString().slice(0,4) //getFullYear
           if (value > currentYear) {
             throw new Error(`Max Year is this year`)
           } else if (value < (currentYear-15)){
@@ -78,7 +78,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: `Color is required`
         },
         validColor (value) {
-          if (value.length > 10) {
+          if (value.length > 10) { //
             throw new Error(`Color maximum 10 characters`)
           }
         }
@@ -88,9 +88,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: {
+        notNull: { 
           msg: `Fuel Type is required`
-        },
+        }, //validasi isIn
         notEmpty: {
           msg: `Fuel Type is required`
         }
@@ -102,7 +102,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: `Transmission is required`
-        },
+        }, // validasi isIn
         notEmpty: {
           msg: `Transmission is required`
         }
@@ -120,7 +120,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         validPrice (value) {
           if (value < 100000000) {
-            throw new Error(`Price minimum 100.000.000`)
+            throw new Error(`Price minimum 100.000.000`) // validasi built-in
           }
         }
       }

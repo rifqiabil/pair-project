@@ -25,5 +25,5 @@ app.use(express.static("public"));
 app.use(`/`, routes);
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`Pair Project Group 5 Mobil Gaya`);
 });
