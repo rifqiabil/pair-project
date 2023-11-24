@@ -88,7 +88,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, //validasi is email
       allowNull: false,
       validate: {
         notNull: {

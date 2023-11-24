@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body style="display: flex;justify-content: center; align-content: center; align-items: center; flex-direction:column ;">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Lists</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+      /* Optional: Custom styles for better alignment */
+      body {
+        margin: 20px;
+      }
+      .card {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
     <%- include('../partials/_navbar') %>
-    
-    <div><h1>Car List</h1></div>
 
-    <% if (deleted) { %>
-     <div style="color: red;"><h3><%= deleted %> has been removed</h3></div>
-    <% } %>
+    <div class="container">
+      <div class="mb-4 mt-5">
+        <h1 style="text-align: center">Car List</h1>
+      </div>
 
-    <% if (bought) { %>
-     <div style="color: blue;"><h3><%= bought %> has been bought</h3></div>
-    <% } %>
+      <% if (deleted) { %>
+      <div class="alert alert-danger" role="alert"><%= deleted %> has been removed</div>
+      <% } %> <% if (bought) { %>
+      <div class="alert alert-info" role="alert"><%= bought %> has been bought</div>
+      <% } %> <% if (error) { %>
+      <div class="alert alert-danger" role="alert"><%= error %></div>
+      <% } %> <% if (role === "admin") { %>
+      <div class="mb-3">
+        <a href="http://localhost:3000/cars/add" class="btn btn-primary">Add New Car</a>
+      </div>
+      <% } %>
 
-    <% if (error) { %>
-        <div style="color: red;"><h3><%= error %></h3></div>
-       <% } %>
-
-    <% if (role === "admin") { %>
-        <div><a href="http://localhost:3000/cars/add"><button>Add New Car</button></a></div><br>
-       <% } %>
-
-
-       <div>
+      <div class="mb-3">
         <form action="">
-            <input type="text" name="nameSearch" placeholder="Search by name">
-            <button type="submit">Search</button>
+          <div class="input-group">
+            <input type="text" name="nameSearch" class="form-control" placeholder="Search by name" />
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+          </div>
         </form>
-       </div>
-    <div><br>
-        
-        <table border="2" style="text-align: center;">
-            <thead>
-                <th>Photo</th>
-                <th>Title</th>
-                <th>Transmission</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </thead>
-            
-            <% data.forEach(el => { %>
-                <tbody>
-                    <td><img style="width: 80px; height: 50px;" src="<%= el.carImage %>" alt="Car Picture"></td>
-                    <td><%= el.title %></td>
-                    <td><%= el.transmission %></td>
-                    <td><%= numberWithCommas(el.stock) %> units</td>
-                    <td><%= toRupiah(el.price) %></td>
-                    <td><%= el.description %></td>
-                    <td style="text-align: end;">
-                        <% if (role === "user") { %>
-                            <a href="http://localhost:3000/cars/buy/<%= el.id %>"><button>Buy</button></a>                         
-                        <% } %>
-                        <% if (role === "admin") { %>
-                         <a href="http://localhost:3000/cars/edit/<%= el.id %>"><button>Edit</button></a>
-                         <a href="http://localhost:3000/cars/delete/<%= el.id %>"><button>Delete</button></a>
-                        <% } %>
-                    </td>
-                </tbody>
-                <% }) %>
-        </table>
+      </div>
+
+      <div class="row">
+        <% data.forEach(el => { %>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="<%= el.carImage %>" class="card-img-top" alt="Car Picture" />
+            <div class="card-body">
+              <h5 class="card-title"><%= el.title %></h5>
+              <p class="card-text">Transmission: <%= el.transmission %></p>
+              <p class="card-text">Stock: <%= numberWithCommas(el.stock) %> units</p>
+              <p class="card-text">Price: <%= toRupiah(el.price) %></p>
+              <p class="card-text">Description: <%= el.description %></p>
+              <div>
+                <% if (role === "user") { %>
+                <a href="http://localhost:3000/cars/buy/<%= el.id %>" class="btn btn-success">Buy</a>
+                <% } %> <% if (role === "admin") { %>
+                <a href="http://localhost:3000/cars/edit/<%= el.id %>" class="btn btn-primary">Edit</a>
+                <a href="http://localhost:3000/cars/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
     </div>
-    
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
 </html>

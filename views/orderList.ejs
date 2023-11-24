@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body style="display: flex;justify-content: center; align-content: center; align-items: center; flex-direction:column ;">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders Bucket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  </head>
+  <style>
+    th {
+      font-size: 24px;
+    }
+  </style>
+  <body>
     <%- include('../partials/_navbar') %>
-    
-    <div><h1>Orders Bucket</h1></div>
 
-    <div>
-        <table border="2" style="text-align: center;">
-            <thead>
-                <th>Username</th>
-                <th>Total Amount</th>
-                <th>Shipping Address</th>
-                <th>Payment Method</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </thead>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Orders Bucket</h1>
+
+      <div class="table-responsive">
+        <table class="table table-bordered text-center">
+          <thead class="thead-light">
+            <tr>
+              <th>Username</th>
+              <th>Total Amount</th>
+              <th>Shipping Address</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
             <% data.forEach(el => { %>
-                <tbody>
-                    <td><%= el.User.username %></td>
-                    <td><%= toRupiah(el.totalAmount) %></td>
-                    <td><%= el.shippingAddress %></td>
-                    <td><%= el.paymentMethod %></td>
-                    <td><%= el.status %></td>
-                    <% if (role === 'admin') { %>
-                     <td style="text-align: end;">
-                        <% if (el.isPaid) { %>
-                            <a href="http://localhost:3000/orders/confirmed/<%= el.uniqueKey %>"><button>Confirmed</button></a>                         
-                        <% } %>
-                        <a href="http://localhost:3000/orders/delete/<%= el.uniqueKey %>"><button>Deleted</button></a>
-                     </td>
-                    <% } %>
-                    <% if (role === 'user') { %>
-                        <td>
-                            <a href="http://localhost:3000/orders/paid/<%= el.uniqueKey %>"><button>Paid</button></a>
-                            <a href="http://localhost:3000/orders/invoice/<%= el.uniqueKey %>"><button>Get Invoice</button></a>
-                         </td>
-                    <% } %>
-                    
-                </tbody>             
+            <tr>
+              <td><%= el.User.username %></td>
+              <td><%= toRupiah(el.totalAmount) %></td>
+              <td><%= el.shippingAddress %></td>
+              <td><%= el.paymentMethod %></td>
+              <td><%= el.status %></td>
+              <td>
+                <% if (role === 'admin') { %> <% if (el.isPaid) { %>
+                <a href="http://localhost:3000/orders/confirmed/<%= el.uniqueKey %>" class="btn btn-success">Confirmed</a>
+                <% } %>
+                <a href="http://localhost:3000/orders/delete/<%= el.uniqueKey %>" class="btn btn-danger">Deleted</a>
+                <% } %> <% if (role === 'user') { %>
+                <a href="http://localhost:3000/orders/paid/<%= el.uniqueKey %>" class="btn btn-primary">Paid</a>
+                <a href="http://localhost:3000/orders/invoice/<%= el.uniqueKey %>" class="btn btn-info">Get Invoice</a>
+                <% } %>
+              </td>
+            </tr>
             <% }) %>
+          </tbody>
         </table>
     </div><br>
     <% if (invoice) { %>

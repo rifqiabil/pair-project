@@ -1,9 +1,95 @@
-<div>
-    <a href="http://localhost:3000/"><button>Home</button></a>
-    <a href="http://localhost:3000/register"><button>Register</button></a>
-    <a href="http://localhost:3000/login"><button>Login</button></a>
-    <a href="http://localhost:3000/cars"><button>Cars</button></a>
-    <a href="http://localhost:3000/logout"><button>Logout</button></a>
-    <a href="http://localhost:3000/profiles"><button>Profile</button></a>
-    <a href="http://localhost:3000/orders"><button>Orders Bucket</button></a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+      body {
+        font-family: "Poppins";
+      }
+
+      .navbar {
+        background-color: #343a40; /* Dark background color */
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: 600; /* Make the font bold */
+        color: #ffffff; /* Text color */
+      }
+
+      .navbar-nav .nav-item .nav-link {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        font-weight: 600; /* Make the font bold */
+        color: #ffffff; /* Text color */
+      }
+
+      .navbar-nav .nav-item:last-child .nav-link {
+        margin-right: 0;
+      }
+
+      .navbar-toggler-icon {
+        background-color: #fff; /* Set the color of the toggler icon */
+      }
+
+      .navbar-toggler {
+        border-color: #fff; /* Set the border color of the toggler button */
+      }
+
+      .btn-login,
+      .btn-logout {
+        font-size: 1rem; /* Adjust the font size as needed */
+      }
+    </style>
+    <title>MobilGaya</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Mobil<span class="text-danger" style="font-style: italic">Gaya</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/register">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/profiles">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/cars">Cars</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/login">
+                <button type="button" class="btn btn-primary btn-login">Login</button>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/logout">
+                <button type="button" class="btn btn-success btn-logout">Logout</button>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="http://localhost:3000/orders"
+                ><img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAttJREFUaEPtmD9rFEEYxn/v7SSpDAFRFIm2il0kIvgJNCpiZaEYCwsVQYKRfAWjIghKCsGINhYW/on4AURQiY2gVoKkEf8TG5Ps5pXRPZ3s3enc7hx7B7flMfPM85t39pl3T+jwRzrcP12AsivYrUDbVSBWNGtK4KXC4wgmRJgv27S7fs0RqgfgTLhlhMOdDGC97zfC3XaBaLYC1vcTI+xsW4CsMVUGE3gHf++MCLaK8KodILxiNFZmgN2O4WtGONZJACPAA8fwQgRr2yGRvCqgiqTHaLAKITAWCZfKroIXgDWZKGcUzpdo+C1w2gj3/3kPNDKoykACX0sEsEvPGWFjLgA7KVamgSMlQhQDWFSGK/CsRIApIxzPXYH0XZhVGKqK2PeiRzgbGkqVNQm8BypV7WXY0Ss8LQQQK6PAdUfkcwQbRFgICZEoYwoXnY160yNsya7hnUJ/hJS+BD4A/Y7YqBFuhARYUl4LbHZieyISzhUGsAJLyqTAuCP23AjbQwEsKkMVmHX0liNYJ8LHIAD1+qNl2NYrvAgBESuXgVOO1iMj7Kqn3fQRqorU6Y+mjXC0KIAqPekRHXC0DhrhdmgA29zZJq/6BOmPYuUAcMfR/Zb2XUtBARr0R+ORcKFIFWLlHrDX0ajJ/kIx6k5OlHGFSee3uQg2idR+V/tA+WZ/MABV+tPz2ueIjhjhoY/h7Bjf7A8GYIVi/XWp2cut+swYYU8eAN/sDwpQJ7M1PUZzzUA0k/1BAdIq2AZvuBnDHmMbZn8rAGyLbVvtkE/D7A8OkFbhE7A6EMEXI35auW/irNFY2QdMAesLQvwADhlZcZk1lAwGUNB07uldAHfrYuWK8PvPX4WbRjjps7V551ntYBWwJoATGcNX/weRd151nWAAiTKvsCoTcd8jWfHlVlOQvPO6AHVitLOPUHqZde5L7JM2rRgT7CVuhTkfzS6Azy61cky3Aq3cXR/tn7z7+jHbpnbOAAAAAElFTkSuQmCC"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

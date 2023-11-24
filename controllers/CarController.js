@@ -33,7 +33,7 @@ class CarController {
           ],
         });
       }
-      
+     
       // res.json(data)
       res.render(`carList`, {
         data,

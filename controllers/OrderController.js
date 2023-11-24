@@ -9,7 +9,7 @@ class OrderController {
     try {
       const role = req.session.userRole;
       const UserId = req.session.userId;
-      const {invoice} = req.query
+      const { invoice } = req.query;
 
       let data;
 
@@ -44,10 +44,7 @@ class OrderController {
     try {
       const { uniqueKey } = req.params;
 
-      const update = await Order.update(
-        { isPaid: true },
-        { where: { uniqueKey } }
-      );
+      const update = await Order.update({ isPaid: true }, { where: { uniqueKey } }); //
 
       res.redirect(`/orders`);
     } catch (error) {
@@ -60,10 +57,7 @@ class OrderController {
     try {
       const { uniqueKey } = req.params;
 
-      const update = await Order.update(
-        { isConfirmed: true },
-        { where: { uniqueKey } }
-      );
+      const update = await Order.update({ isConfirmed: true }, { where: { uniqueKey } }); //
 
       res.redirect(`/orders`);
     } catch (error) {
@@ -76,7 +70,7 @@ class OrderController {
     try {
       const { uniqueKey } = req.params;
 
-      const update = await Order.destroy({ where: { uniqueKey } });
+      const update = await Order.destroy({ where: { uniqueKey } }); //
 
       res.redirect(`/orders`);
     } catch (error) {

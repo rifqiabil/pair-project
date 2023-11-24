@@ -23,6 +23,7 @@ const justAdmin = function (req, res, next) {
 
 router.get(`/`, bothRole, OrderController.list);
 
+
 router.get(`/invoice/:uniqueKey`, bothRole, OrderController.invoice);
 
 router.get(`/paid/:uniqueKey`, bothRole, OrderController.paid);

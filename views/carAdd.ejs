@@ -1,63 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body style="display: flex;justify-content: center; align-content: center; align-items: center; flex-direction:column ;">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Car</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .mt-5 {
+        margin-top: 5px;
+      }
+
+      .mb-3 {
+        margin-bottom: 3px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #555;
+      }
+
+      .error-message {
+        color: red;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
     <%- include('../partials/_navbar') %>
-    
-    <div><h1>Add Car</h1></div>
+
+    <div class="mt-5 mb-3"><h1>Add Car</h1></div>
 
     <% if (errors) { %>
-     <div>
-       <p style="color: red;"> <%= errors.split(",").join(", ") %></p>
+    <div class="error-message">
+      <p><%= errors.split(",").join(", ") %></p>
     </div>
     <% } %>
 
-    <div>
-        <form action="http://localhost:3000/cars/add" method="post">
-            <label for="name">Name</label><br>
-            <input type="text" name="name"><br><br>
+    <div class="mt-5 mb-3">
+      <form action="http://localhost:3000/cars/add" method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name" />
 
-            <label for="productionYear">Production Year</label><br>
-            <input type="number" name="productionYear"><br><br>
+        <label for="productionYear">Production Year</label>
+        <input type="number" name="productionYear" />
 
-            <label for="stock">Stock</label><br>
-            <input type="number" name="stock"><br><br>
+        <label for="stock">Stock</label>
+        <input type="number" name="stock" />
 
-            <label for="color">Color</label><br>
-            <input type="text" name="color"><br><br>
+        <label for="color">Color</label>
+        <input type="text" name="color" />
 
-            <label for="fuelType">Fuel Type</label><br>
-            <select name="fuelType">
-                <option value="" selected disabled>--Select Fuel Type--</option>
-                <option value="Diesel">Diesel</option>
-                <option value="Bensin">Bensin</option>
-            </select><br><br>
+        <label for="fuelType">Fuel Type</label>
+        <select name="fuelType">
+          <option value="" selected disabled>--Select Fuel Type--</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Bensin">Bensin</option>
+        </select>
 
-            <label for="transmission">Transmission</label><br>
-            <select name="transmission">
-                <option value="" selected disabled>--Select Fuel Type--</option>
-                <option value="Automatic">Automatic</option>
-                <option value="Manual">Manual</option>
-            </select><br><br>
+        <label for="transmission">Transmission</label>
+        <select name="transmission">
+          <option value="" selected disabled>--Select Transmission--</option>
+          <option value="Automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+        </select>
 
-            <label for="price">Price</label><br>
-            <input type="number" name="price"><br><br>
+        <label for="price">Price</label>
+        <input type="number" name="price" />
 
-            <label for="description">Description</label><br>
-            <textarea name="description" cols="30" rows="5"></textarea><br><br>
+        <label for="description">Description</label>
+        <textarea name="description" cols="30" rows="5"></textarea>
 
-            <label for="carImage">Car Image URL</label><br>
-            <input type="text" name="carImage"><br><br>
+        <label for="carImage">Car Image URL</label>
+        <input type="text" name="carImage" />
 
-            <button type="submit">Add Car</button>
-
-        </form>
+        <button type="submit" style="margin-top: 8px; border-radius: 8px">Add Car</button>
+      </form>
     </div>
-    
-</body>
+  </body>
 </html>
