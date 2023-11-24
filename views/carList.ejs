@@ -11,35 +11,56 @@
         margin: 20px;
       }
       .card {
-        margin-bottom: 20px; /* Added margin to create space between cards */
-      }
-      table {
-        width: 100%;
+        margin-bottom: 20px;
       }
     </style>
   </head>
   <body>
     <%- include('../partials/_navbar') %>
 
-    <div class="container mt-4">
-      <h1 class="text-center mb-4 mt-5">Car Lists</h1>
+    <div class="container">
+      <div class="mb-4 mt-5">
+        <h1 style="text-align: center">Car List</h1>
+      </div>
+
+      <% if (deleted) { %>
+      <div class="alert alert-danger" role="alert"><%= deleted %> has been removed</div>
+      <% } %> <% if (bought) { %>
+      <div class="alert alert-info" role="alert"><%= bought %> has been bought</div>
+      <% } %> <% if (error) { %>
+      <div class="alert alert-danger" role="alert"><%= error %></div>
+      <% } %> <% if (role === "admin") { %>
+      <div class="mb-3">
+        <a href="http://localhost:3000/cars/add" class="btn btn-primary">Add New Car</a>
+      </div>
+      <% } %>
+
+      <div class="mb-3">
+        <form action="">
+          <div class="input-group">
+            <input type="text" name="nameSearch" class="form-control" placeholder="Search by name" />
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+          </div>
+        </form>
+      </div>
 
       <div class="row">
         <% data.forEach(el => { %>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4">
           <div class="card">
-            <img src="<%= el.carImage %>" class="card-img-top" alt="Car Picture" style="height: 200px; object-fit: cover" />
+            <img src="<%= el.carImage %>" class="card-img-top" alt="Car Picture" />
             <div class="card-body">
               <h5 class="card-title"><%= el.title %></h5>
-              <p class="card-text"><span style="font-weight: bold">Transmission:</span> <%= el.transmission %></p>
-              <p class="card-text"><span style="font-weight: bold">Milage:</span> <%= numberWithCommas(el.milage) %> km</p>
-              <p class="card-text"><span style="font-weight: bold">Price:</span> <%= toRupiah(el.price) %></p>
-              <p class="card-text"><span style="font-weight: bold">Description:</span> <%= el.description %></p>
-              <div class="text-center">
-                <a href="#" class="btn btn-primary">Buy</a>
-                <% if (role === "admin") { %>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+              <p class="card-text">Transmission: <%= el.transmission %></p>
+              <p class="card-text">Stock: <%= numberWithCommas(el.stock) %> units</p>
+              <p class="card-text">Price: <%= toRupiah(el.price) %></p>
+              <p class="card-text">Description: <%= el.description %></p>
+              <div>
+                <% if (role === "user") { %>
+                <a href="http://localhost:3000/cars/buy/<%= el.id %>" class="btn btn-success">Buy</a>
+                <% } %> <% if (role === "admin") { %>
+                <a href="http://localhost:3000/cars/edit/<%= el.id %>" class="btn btn-primary">Edit</a>
+                <a href="http://localhost:3000/cars/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
                 <% } %>
               </div>
             </div>
